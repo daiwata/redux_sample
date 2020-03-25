@@ -1,8 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 
-ReactDOM.render(
-  <b>Hello world!</b>,
-  document.getElementById('root')
-);
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case "PLUS_ONE":
+      return state + 1;
+    case "MINUS_ONE":
+      return state - 1;
+    default:
+      return state;
+  }
+}
 
+const store = createStore(reducer)
+
+store.subscribe(() => {
+  console.log(store.getState())
+})
+
+store.dispatch({ type: "PLUS_ONE" })
+store.dispatch({ type: "PLUS_ONE" })
+store.dispatch({ type: "MINUS_ONE" })
