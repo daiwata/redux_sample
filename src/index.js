@@ -1,15 +1,11 @@
-import { createStore } from 'redux';
+import React from 'react';
+import { render } from 'react-dom';
 
-const reducer = (state = 0, action) => {
-  switch (action.type) {
-    case "PLUS_ONE":
-      return state + 1;
-    case "MINUS_ONE":
-      return state - 1;
-    default:
-      return state;
-  }
-}
+import { createStore } from 'redux';
+import reducer from './reducer';
+
+import { Provider } from "react-redux";
+import App from "./App";
 
 const store = createStore(reducer)
 
@@ -17,6 +13,12 @@ store.subscribe(() => {
   console.log(store.getState())
 })
 
-store.dispatch({ type: "PLUS_ONE" })
-store.dispatch({ type: "PLUS_ONE" })
-store.dispatch({ type: "MINUS_ONE" })
+render(
+  <Provider store={store} >
+    <App />
+  </Provider >,
+  document.getElementById("root"))
+
+store.dispatch({ type: "PLUS", payload: { num: 3 } })
+store.dispatch({ type: "PLUS", payload: { num: 10 } })
+store.dispatch({ type: "MINUS", payload: { num: 10 } })
