@@ -1,13 +1,5 @@
-import React from 'react';
 import { connect } from 'react-redux';
-
-const App = ({ number, plus, minus }) => (
-    <div>
-        <h2>App {number}</h2>
-        <button onClick={() => { plus(10); }}>+10</button>
-        <button onClick={() => { minus(10); }}>-10</button>
-    </div>
-)
+import App from '../components/App'
 
 const mapStateToProps = state => {
     return {
